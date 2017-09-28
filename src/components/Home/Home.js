@@ -9,37 +9,43 @@ class Review extends Component {
       super(props);
   
       this.state = {
-        name: '',
-        gender: '',
-        age: '',
+        validator: '',
+        NewsPrice: '',
+        startDate: '',
+        endDate: '',
       };
     }
   
     componentWillMount() {
       const { steps } = this.props;
-      const { name, gender, age } = steps;
-  
-      this.setState({ name, gender, age });
+      const { validator, NewsPrice, startDate, endDate } = steps;
+        console.log(this.props)
+      this.setState({ validator, NewsPrice, startDate, endDate});
+      console.log(this.state)
     }
   
     render() {
-      const { name, gender, age } = this.state;
+      const { validator, NewsPrice, startDate, endDate} = this.state;
       return (
         <div style={{ width: '100%' }}>
           <h3>Summary</h3>
           <table>
             <tbody>
               <tr>
-                <td>Name</td>
-                <td>{name.value}</td>
+                <td>stock</td>
+                <td>{validator.value}</td>
               </tr>
               <tr>
-                <td>Gender</td>
-                <td>{gender.value}</td>
+                <td>News/Price</td>
+                <td>{NewsPrice.value}</td>
               </tr>
               <tr>
-                <td>Age</td>
-                <td>{age.value}</td>
+                <td>Start Date</td>
+                <td>{startDate.value}</td>
+              </tr>
+              <tr>
+                <td>End Date</td>
+                <td>{endDate.value}</td>
               </tr>
             </tbody>
           </table>
@@ -77,48 +83,58 @@ class Review extends Component {
             {
               id: '1',
               message: 'Please enter the stock abbreviation you would like to search',
-              trigger: 'name',
+              trigger: 'validator',
             },
             {
-              id: 'name',
+              id:'validator',
               user: true,
               trigger: '3',
-            },
-            {
-              id: '3',
-              message: 'Hi {previousValue}! What is your gender?',
-              trigger: 'gender',
-            },
-            {
-              id: 'gender',
-              options: [
-                { value: 'male', label: 'Male', trigger: '5' },
-                { value: 'female', label: 'Female', trigger: '5' },
-              ],
-            },
-            {
-              id: '5',
-              message: 'How old are you?',
-              trigger: 'age',
-            },
-            {
-              id: 'age',
-              user: true,
-              trigger: '7',
               validator: (value) => {
-                if (isNaN(value)) {
-                  return 'value must be a number';
-                } else if (value < 0) {
-                  return 'value must be positive';
-                } else if (value > 120) {
-                  return `${value}? Come on!`;
-                }
+                if (value === 'Todd') {
+                  return 'Todd(QuestionMark?)';
+                } else if (value === 'your stupid') {
+                  return "you're* Do I have to keep going? ";
+                } else if (value === 'damn') {
+                  return 'Todd would not approve of that language..';
+                } else
   
                 return true;
               },
             },
             {
+              id: '3',
+              message: 'I will gather information on {previousValue}! would you like recent news, or current stock price?',
+              trigger: 'NewsPrice',
+            },
+            {
+              id: 'NewsPrice',
+              options: [
+                { value: 'News', label: 'News', trigger: '7' },
+                { value: 'Price', label: 'Price', trigger: '7' },
+              ],
+            },
+            {
               id: '7',
+              message: 'Please enter the date you want to start tracking price ex. 2017-05-10',
+              trigger: 'startDate'
+            },
+            {
+              id: 'startDate',
+              user: true,
+              trigger: '8',
+            },
+            {
+              id: '8',
+              message:'Please enter the date you want to start tracking price ex. 2017-07-10',
+              trigger: 'endDate',
+            },
+            {
+              id: 'endDate',
+              user: true,
+              trigger:'9'
+            },
+            {
+              id: '9',
               message: 'Great! Check out your summary',
               trigger: 'review',
             },
@@ -130,13 +146,13 @@ class Review extends Component {
             },
             {
               id: 'update',
-              message: 'Would you like to update some field?',
-              trigger: 'update-question',
+              message: 'Is there another stock I can search for you?',
+              trigger: 'secondStock',
             },
             {
-              id: 'update-question',
+              id: 'secondStock',
               options: [
-                { value: 'yes', label: 'Yes', trigger: 'update-yes' },
+                { value: 'yes', label: 'Yes', trigger: '1' },
                 { value: 'no', label: 'No', trigger: 'end-message' },
               ],
             },
@@ -170,7 +186,7 @@ class Review extends Component {
             },
             {
               id: 'end-message',
-              message: 'Thanks! Your data was submitted successfully!',
+              message: 'Thanks! Hope to see you again soon',
               end: true,
             },
           ]}

@@ -35,26 +35,26 @@ passport.use(new Auth0Strategy({
             db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id])
             .then(user => {
                 done(null, user[0].id)
-            })
+            });
         }
     }); 
-}))
+}));
 
 passport.serializeUser(function(userID, done){
     done(null, userID);
-})
+});
 passport.deserializeUser(function(userID, done){
     app.get('db').current_user([userID]).then(user => {
-        done(null, user[0])
-    })
-})
+        done(null, user[0]);
+    });
+});
 
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0',{
     successRedirect: 'http://localhost:3000/#/home',
     failureRedirect: '/auth'
-}))
+}));
 
 app.get('/auth/user', (req, res, next) => {
     if (!req.user){
@@ -63,12 +63,12 @@ app.get('/auth/user', (req, res, next) => {
         return res.status(200).send(req.user);
     }
 
-})
+});
 
 app.get('/auth/logout', (req, res) => {
     req.logOut();
     res.redirect(302, 'http://localhost:3000/')
-})
+});
 
 const PORT = 3535;
 app.listen(PORT, () => console.log('listening on port: ', PORT));
