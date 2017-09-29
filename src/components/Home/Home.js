@@ -3,29 +3,48 @@ import './Home.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ChatBot from 'react-simple-chatbot';
+import axios from 'axios';
+
+var yahooFinance = require('yahoo-finance');
+var util = require('util');
+require('colors');
 
 class Review extends Component {
     constructor(props) {
       super(props);
-  
-      this.state = {
-        validator: '',
-        NewsPrice: '',
-        startDate: '',
-        endDate: '',
+    this.state = {
+        baseUrl2: '")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=',
+        baseUrl: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("',
+        validator: this.props.steps.validator,
+        NewsPrice: this.props.steps.NewsPrice,
+        startDate: this.props.steps.startDate,
+        endDate: this.props.steps.endDate,
+        stockInfo: {}
       };
     }
   
-    componentWillMount() {
-      const { steps } = this.props;
-      const { validator, NewsPrice, startDate, endDate } = steps;
-        console.log(this.props)
-      this.setState({ validator, NewsPrice, startDate, endDate});
-      console.log(this.state)
-    }
+
+
+
+    componentDidMount() {
+    //   const { validator, NewsPrice, startDate, endDate } = this.props.steps;
+    //   this.setState({ validator, NewsPrice, startDate, endDate});
+      var urlUpdater= this.state.baseUrl + this.props.steps.validator.value + this.state.baseUrl2;
+      console.log(urlUpdater);
+      axios.get(urlUpdater)
+      .then((response) => { 
+          console.log(response);
+        this.setState({
+            stockInfo: response.data
+        })
+        });
+       
+    };
+
   
     render() {
       const { validator, NewsPrice, startDate, endDate} = this.state;
+      console.log(this.state.stockInfo);
       return (
         <div style={{ width: '100%' }}>
           <h3>Summary</h3>
@@ -33,7 +52,7 @@ class Review extends Component {
             <tbody>
               <tr>
                 <td>stock</td>
-                <td>{validator.value}</td>
+                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.symbol}</td>:null}
               </tr>
               <tr>
                 <td>News/Price</td>
