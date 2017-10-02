@@ -51,20 +51,20 @@ class Review extends Component {
           <table>
             <tbody>
               <tr>
-                <td>stock</td>
-                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.symbol}</td>:null}
+                <td>Company Name</td>
+                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.Name}</td>:null}
               </tr>
               <tr>
-                <td>News/Price</td>
-                <td>{NewsPrice.value}</td>
+                <td>Ask price</td>
+                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.Ask}</td>:null}
               </tr>
               <tr>
-                <td>Start Date</td>
-                <td>{startDate.value}</td>
+                <td>percent Change</td>
+                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.Change}</td>:null}
               </tr>
               <tr>
-                <td>End Date</td>
-                <td>{endDate.value}</td>
+                <td>P/E Ratio</td>
+                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.PERatio}</td>:null}
               </tr>
             </tbody>
           </table>
@@ -84,8 +84,8 @@ class Review extends Component {
   class SimpleForm extends Component {
     render() {
       return (
-          <div>
-          <div>
+  <div>
+    <div>
       <div className="pimg1">
         <div className="ptext">
           <span className="border">
@@ -101,7 +101,17 @@ class Review extends Component {
           steps={[
             {
               id: '1',
-              message: 'Please enter the stock abbreviation you would like to search',
+              message: 'Before we get started, Please enter your name so I can get to know you a little better.',
+              trigger: '1-2'
+            },
+            {
+              id:'1-2',
+              user:true,
+              trigger: '2'
+            },
+            {
+              id: '2',
+              message: 'Hello {previousValue}, Please enter the stock abbreviation you would like to search. If you want to look at a list of Popular companies, Look below the Chat.',
               trigger: 'validator',
             },
             {
@@ -216,19 +226,53 @@ class Review extends Component {
       <div className="pimg2">
         <div className="ptext">
           <span className="border">
-            Commands
+            Common Stocks
           </span>
         </div>
       </div>
 
       <section className="section section-dark">
-        <h2>These are the command you can give StockBot</h2>
-        <p> 
-          senlvisentbilsretnfvsintid
-          sfnbjklsvdnfvisdnfbilsvdfnlsid
-          fjnisdfnvisbdfnvinrstendjfnvslj
-          nvaonvosndf
-        </p>
+        <h2>These are the top 20 most traded stocks</h2>
+          <p> 
+            <ul>
+              <li>Bank of America (BAC)</li>	
+              <li>Rite Aid (RAD)</li>
+              <li>Oracle (ORCL)</li>	
+            </ul>
+            <ul>
+              <li>Enterprise Products Partners (EPD)</li>
+              <li>General Electric (GE)</li>	
+              <li>Ambev ADR (ABEV)</li>
+            </ul>
+          </p>
+          <p>
+            <ul>
+        	    <li>Ford Motor (F)</li>	
+        	    <li>Sterling Bancorp (STL)</li>	
+        	    <li>Vale ADR (VALE)</li>	
+            </ul>
+            <ul>
+              <li>Chesapeake Energy (CHK)</li>	
+              <li>AT&T (T)</li>	
+              <li>Snap (SNAP)</li>
+            </ul>
+          </p>	
+          <p>
+            <ul>
+              <li>Wells Fargo (WFC)</li>	
+              <li>Transocean (RIG)</li>	
+              <li>Freeport-McMoRan (FCX)</li>	
+            </ul>
+            <ul>
+              <li>Calpine (CPN)</li>
+              <li>Pfizer (PFE)</li>
+              <li>Weatherford International (WFT)</li>
+            </ul>
+            <ul>
+              <li>ENSCO (ESV)</li>
+              <li>Marathon Oil (MRO)</li>
+            </ul>
+          </p>
       </section>
 
       <div className="pimg3">
@@ -241,12 +285,23 @@ class Review extends Component {
 
       <section className="section section-dark">
         <h2>Built using the latest technologies</h2>
-        <p> 
-          senlvisentbilsretnfvsintidsf
-          nbjklsvdnfvisdnfbilsvdfnlsidfjni
-          sdfnvisbdfnvinrstendjfnvsljnvaon
-          vosndf
-        </p>
+       
+          <p> 
+          <img src='./../../assets/reactRedux.jpg'/>
+            This app was built using the new Javascript Framework, React. this allows me to easily creating a stunning website with its advantages such as components and easy setup.
+          </p>
+          <p>
+            NODE.JS while  React is the framework I built this app on, 
+            I also used Node.js in partnership with Axios and Massive, to help me 
+            communicate bettwwen not only my front and backend, but also the Yahoo! 
+            Finance API I used to gatrher the stocks after user input in the ChatBot.
+          </p>
+          <p>
+            SQL-to handle the saving of peoples recently searched stocks, I have chosen SQL as my database language to prepare myself for the job force, as many companies rely on SQL to communicate with thier database.
+          </p>
+          <p>
+            Other Technologies also used in this project: bootstrap, Parralax, Redux, Auth0, Sessions,  
+          </p>                                                                          
       </section>
 
       <div className="pimg1">
@@ -257,7 +312,7 @@ class Review extends Component {
         </div>
       </div>
     </div>
-        </div>
+  </div>
       );
     }
   }
