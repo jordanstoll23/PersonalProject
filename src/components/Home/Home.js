@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import './Home.css';
+import '../../index.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ChatBot from 'react-simple-chatbot';
 import axios from 'axios';
+import reactLogo from '../../assets/reactLogo.jpg';
+import nodeLogo from '../../assets/nodejs-new-pantone-white.png';
+import sqlLogo from '../../assets/sqlLogo.png';
+import { HashLink as Link } from 'react-router-hash-link';
 
-var yahooFinance = require('yahoo-finance');
-var util = require('util');
+
+
+
 require('colors');
 
 class Review extends Component {
@@ -80,11 +85,23 @@ class Review extends Component {
   Review.defaultProps = {
     steps: undefined,
   };
-  
+
+
+
   class SimpleForm extends Component {
     render() {
       return (
-  <div>
+        <div id="top">
+        <nav className="topnav" id="myTopnav">
+        <Link to="home#top">Home</Link>
+        <Link to="home#tech">Technology Used</Link>
+        <Link to="home#stocks">Common Stocks</Link>
+        <a href="#Profile">Profile</a>
+        
+        
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+      </nav>
+  
     <div>
       <div className="pimg1">
         <div className="ptext">
@@ -96,7 +113,7 @@ class Review extends Component {
       
       <section className="section section-light">
         <h2>Check how your stocks are doing</h2>
-        <div>
+        <div className='chatBot'>
         <ChatBot
           steps={[
             {
@@ -132,38 +149,6 @@ class Review extends Component {
             },
             {
               id: '3',
-              message: 'I will gather information on {previousValue}! would you like recent news, or current stock price?',
-              trigger: 'NewsPrice',
-            },
-            {
-              id: 'NewsPrice',
-              options: [
-                { value: 'News', label: 'News', trigger: '7' },
-                { value: 'Price', label: 'Price', trigger: '7' },
-              ],
-            },
-            {
-              id: '7',
-              message: 'Please enter the date you want to start tracking price ex. 2017-05-10',
-              trigger: 'startDate'
-            },
-            {
-              id: 'startDate',
-              user: true,
-              trigger: '8',
-            },
-            {
-              id: '8',
-              message:'Please enter the date you want to start tracking price ex. 2017-07-10',
-              trigger: 'endDate',
-            },
-            {
-              id: 'endDate',
-              user: true,
-              trigger:'9'
-            },
-            {
-              id: '9',
               message: 'Great! Check out your summary',
               trigger: 'review',
             },
@@ -174,6 +159,23 @@ class Review extends Component {
               trigger: 'update',
             },
             {
+              id: 'save?',
+              message: 'Would you like to save this stock to your Profile?',
+              trigger: 'save'
+            },
+            {
+              id: 'save',
+              options: [
+                { value: 'yes', label: 'Yes', trigger:'noSave'},
+                { value: 'no', label:'No', trigger:'update'}
+              ]
+            },
+            {
+              id: 'noSave',
+              message: 'hello',
+              trigger: 'update'
+            },
+            {
               id: 'update',
               message: 'Is there another stock I can search for you?',
               trigger: 'secondStock',
@@ -181,37 +183,9 @@ class Review extends Component {
             {
               id: 'secondStock',
               options: [
-                { value: 'yes', label: 'Yes', trigger: '1' },
+                { value: 'yes', label: 'Yes', trigger: '2' },
                 { value: 'no', label: 'No', trigger: 'end-message' },
               ],
-            },
-            {
-              id: 'update-yes',
-              message: 'What field would you like to update?',
-              trigger: 'update-fields',
-            },
-            {
-              id: 'update-fields',
-              options: [
-                { value: 'name', label: 'Name', trigger: 'update-name' },
-                { value: 'gender', label: 'Gender', trigger: 'update-gender' },
-                { value: 'age', label: 'Age', trigger: 'update-age' },
-              ],
-            },
-            {
-              id: 'update-name',
-              update: 'name',
-              trigger: '7',
-            },
-            {
-              id: 'update-gender',
-              update: 'gender',
-              trigger: '7',
-            },
-            {
-              id: 'update-age',
-              update: 'age',
-              trigger: '7',
             },
             {
               id: 'end-message',
@@ -223,7 +197,7 @@ class Review extends Component {
         </div>
       </section>
       
-      <div className="pimg2">
+      <div className="pimg2" id='stocks'>
         <div className="ptext">
           <span className="border">
             Common Stocks
@@ -233,7 +207,7 @@ class Review extends Component {
 
       <section className="section section-dark">
         <h2>These are the top 20 most traded stocks</h2>
-          <p> 
+          <div> 
             <ul>
               <li>Bank of America (BAC)</li>	
               <li>Rite Aid (RAD)</li>
@@ -244,8 +218,8 @@ class Review extends Component {
               <li>General Electric (GE)</li>	
               <li>Ambev ADR (ABEV)</li>
             </ul>
-          </p>
-          <p>
+          </div>
+          <div>
             <ul>
         	    <li>Ford Motor (F)</li>	
         	    <li>Sterling Bancorp (STL)</li>	
@@ -256,8 +230,8 @@ class Review extends Component {
               <li>AT&T (T)</li>	
               <li>Snap (SNAP)</li>
             </ul>
-          </p>	
-          <p>
+          </div>	
+          <div>
             <ul>
               <li>Wells Fargo (WFC)</li>	
               <li>Transocean (RIG)</li>	
@@ -272,10 +246,10 @@ class Review extends Component {
               <li>ENSCO (ESV)</li>
               <li>Marathon Oil (MRO)</li>
             </ul>
-          </p>
+          </div>
       </section>
 
-      <div className="pimg3">
+      <div className="pimg3" id='tech'>
         <div className="ptext">
           <span className="border">
           Built using the latest technologies
@@ -286,24 +260,26 @@ class Review extends Component {
       <section className="section section-dark">
         <h2>Built using the latest technologies</h2>
        
-          <p> 
-          <img src='./../../assets/reactRedux.jpg'/>
+          <div>
+          <img src={reactLogo} className='reactLogo' alt='react logo'/>
             This app was built using the new Javascript Framework, React. this allows me to easily creating a stunning website with its advantages such as components and easy setup.
-          </p>
-          <p>
+          </div>
+          <div className='node'>
+          <img src={nodeLogo} className='nodeLogo' alt='node logo'/>
             NODE.JS while  React is the framework I built this app on, 
             I also used Node.js in partnership with Axios and Massive, to help me 
             communicate bettwwen not only my front and backend, but also the Yahoo! 
             Finance API I used to gatrher the stocks after user input in the ChatBot.
-          </p>
-          <p>
+          </div>
+          <div>
+          <img src={sqlLogo} className='sqlLogo' alt='sql logo'/>
             SQL-to handle the saving of peoples recently searched stocks, I have chosen SQL as my database language to prepare myself for the job force, as many companies rely on SQL to communicate with thier database.
-          </p>
-          <p>
+          </div>
+          <div>
             Other Technologies also used in this project: bootstrap, Parralax, Redux, Auth0, Sessions,  
-          </p>                                                                          
+          </div>                                                                          
       </section>
-
+      
       <div className="pimg1">
         <div className="ptext">
           <span className="border">

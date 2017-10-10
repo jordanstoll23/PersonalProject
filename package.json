@@ -15,7 +15,10 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-router-hash-link": "^1.1.1",
     "react-scripts": "1.0.13",
+    "react-scrollable-anchor": "^0.5.0",
+    "react-scrollchor": "^4.0.0",
     "react-simple-chatbot": "^0.2.6",
     "redux": "^3.7.2",
     "yahoo-finance": "^0.3.3"
@@ -23,7 +26,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "mocha",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
   }
 }
