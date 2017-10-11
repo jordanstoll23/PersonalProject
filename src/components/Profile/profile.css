@@ -1,3 +1,7 @@
-.div1{
-    color: red;
-}
+.div1 { 
+    background: url() no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }

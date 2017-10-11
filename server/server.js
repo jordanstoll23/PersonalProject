@@ -7,6 +7,7 @@ const express = require('express'),
       Auth0Strategy = require('passport-auth0');
 
 const app = express();
+app.use(bodyParser.json())
 app.use(session({
     secret: process.env.SECRET,
     resave:false,
@@ -69,6 +70,20 @@ app.get('/auth/logout', (req, res) => {
     req.logOut();
     res.redirect(302, 'http://localhost:3000/')
 });
+
+
+app.post('/api/stocks', (req, res) => {
+    const db = app.get('db');
+    db.create_stock([1, req.body.stock])
+})
+
+app.get('/api/stocks/:id', (req, res) => {
+    const db = app.get('db');
+    db.get_stock([req.params.id]).then(stock => {
+        res.status(200).send(stock[0]);
+    })
+})
+
 
 const PORT = 3535;
 app.listen(PORT, () => console.log('listening on port: ', PORT));
