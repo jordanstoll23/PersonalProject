@@ -34,6 +34,31 @@ body, html {
   max-height: 200px;
   max-width: 400px; }
 
+.techExplanation {
+  font-size: 25px;
+  display: inline-block;
+  text-align: center;
+  padding: 20px;
+  margin: auto; }
+
+.profileImg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0; }
+
+@media screen and (max-width: 1024px) {
+  /* Specific to this particular image */
+  .profileImg {
+    left: 50%;
+    margin-left: -512px;
+    /* 50% */ } }
 @media (max-width: 568px) {
   .sqlLogo {
     max-height: 100px;
@@ -46,6 +71,15 @@ body, html {
   .nodeLogo {
     max-height: 100px;
     max-width: 200px; } }
+@media (max-width: 1920px) {
+  .fa {
+    font-size: 23px; } }
+@media (max-width: 665px) {
+  .fa {
+    font-size: 20px; } }
+@media (max-width: 411px) {
+  .fa {
+    font-size: 12px; } }
 .chatBot {
   display: flex;
   justify-content: center; }
@@ -77,16 +111,15 @@ body, html {
   color: white;
   padding: 20px; }
 
-@media (max-width: 880px) {
-  .border {
-    background-color: #111;
-    color: white;
-    padding: 0px; } }
-@media (max-width: 568px) {
-  .pimg1, .pimg2, .pimg3 {
-    background-attachment: scroll; } }
 ul {
-  text-align: left; }
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  list-style-position: inside;
+  list-style-type: disc;
+  max-width: 24%;
+  margin: auto;
+  padding: 0px; }
 
 .topnav {
   background-color: #333;
@@ -94,7 +127,9 @@ ul {
   position: fixed;
   width: 100%;
   opacity: 100%;
-  z-index: 1000; }
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between; }
 
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -114,5 +149,30 @@ ul {
 /* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
   display: none; }
+
+.stocks {
+  padding: 20px;
+  color: red; }
+
+@media (max-width: 880px) {
+  .border {
+    background-color: #111;
+    color: white;
+    padding: 0px; } }
+@media (max-width: 568px) {
+  .pimg1, .pimg2, .pimg3 {
+    background-attachment: scroll; } }
+@media (max-width: 900px) {
+  ul {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    max-width: 100%;
+    margin: auto;
+    padding: 10px; } }
+@media (max-width: 600px) {
+  .topnav a {
+    font-size: 10px;
+    padding: 7px; } }
 
 /*# sourceMappingURL=index.css.map */

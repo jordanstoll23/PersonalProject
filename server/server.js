@@ -33,11 +33,16 @@ passport.use(new Auth0Strategy({
         if (user[0]){
             done(null, user[0].id)
         } else {
-            db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id])
+            db.create_user([profile.emails[0].value, profile.identities[0].user_id])
             .then(user => {
                 done(null, user[0].id)
+            })
+            .catch(err => {
+                console.log("Inner Error",err)
             });
         }
+    }).catch(err => {
+        console.log("Outer Error",err)
     }); 
 }));
 
@@ -46,7 +51,7 @@ passport.serializeUser(function(userID, done){
 });
 passport.deserializeUser(function(userID, done){
     app.get('db').current_user([userID]).then(user => {
-        done(null, user[0]);
+        done(null, userID);
     });
 });
 
@@ -74,13 +79,13 @@ app.get('/auth/logout', (req, res) => {
 
 app.post('/api/stocks', (req, res) => {
     const db = app.get('db');
-    db.create_stock([1, req.body.stock])
+    db.create_stock([req.user.id, req.body.stock])
 })
 
-app.get('/api/stocks/:id', (req, res) => {
-    const db = app.get('db');
-    db.get_stock([req.params.id]).then(stock => {
-        res.status(200).send(stock[0]);
+app.get('/api/stocks/', (req, res) => {
+    const db = req.app.get('db');
+    db.get_stock([req.user]).then(stock => {
+        res.status(200).send(stock);
     })
 })
 

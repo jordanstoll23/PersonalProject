@@ -1,3 +1,3 @@
 SELECT *
 FROM stocks
-WHERE id = $1;
+WHERE userid = $1;

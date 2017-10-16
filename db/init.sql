@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS stocks(
 INSERT INTO users 
 (email, auth_id) 
 VALUES 
-( 'dylan@dylan.com', 'ABGJBDB4536ABFJNFS345');
+( 'bob@bob.com	', '59dc5ea91d73b86a0f21f6fc');
 
 INSERT INTO stocks
 (userid, stock ) 

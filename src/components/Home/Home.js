@@ -14,6 +14,23 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 require('colors');
 
+class SaveStock extends Component {
+
+
+  componentDidMount() {
+
+      axios.post(`/api/stocks/`, {validator: this.props })
+      .then ( response => {
+        console.log(response)
+      } )
+  }
+
+
+}
+
+
+
+
 class Review extends Component {
     constructor(props) {
       super(props);
@@ -27,9 +44,6 @@ class Review extends Component {
         stockInfo: {}
       };
     }
-  
-
-
 
     componentDidMount() {
     //   const { validator, NewsPrice, startDate, endDate } = this.props.steps;
@@ -49,7 +63,6 @@ class Review extends Component {
   
     render() {
       const { validator, NewsPrice, startDate, endDate} = this.state;
-      console.log(this.state.stockInfo);
       return (
         <div style={{ width: '100%' }}>
           <h3>Summary</h3>
@@ -85,21 +98,34 @@ class Review extends Component {
   Review.defaultProps = {
     steps: undefined,
   };
-
+ 
 
 
   class SimpleForm extends Component {
+  //   constructor(props){
+  //   super(props)
+  //   this.state = {
+  //     validator: this.props.steps.validator
+  //   }
+  
+  // }
+
+
     render() {
       return (
         <div id="top">
         <nav className="topnav" id="myTopnav">
+        <div>
         <Link to="home#top">Home</Link>
         <Link to="home#tech">Technology Used</Link>
         <Link to="home#stocks">Common Stocks</Link>
         <a href="#Profile">Profile</a>
-        
-        
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+        <div className='contact'>
+        <a href="mailto:jordanstoll88@gmail.com"> <i className="fa fa-envelope-o" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/jordan-stoll" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+        <a href="https://github.com/jordanstoll23" target="_blank"><i className="fa fa-github" aria-hidden="true"></i></a>
+        </div>
       </nav>
   
     <div>
@@ -156,19 +182,24 @@ class Review extends Component {
               id: 'review',
               component: <Review />,
               asMessage: true,
-              trigger: 'update',
+              trigger: 'save1',
             },
             {
-              id: 'save?',
+              id: 'save1',
               message: 'Would you like to save this stock to your Profile?',
-              trigger: 'save'
+              trigger: 'save1-2'
+            },
+            {
+              id: 'save1-2',
+              options: [
+                { value: 'yes', label: 'Yes', trigger:'save'},
+                { value: 'no', label:'No', trigger:'update'}
+              ]
             },
             {
               id: 'save',
-              options: [
-                { value: 'yes', label: 'Yes', trigger:'noSave'},
-                { value: 'no', label:'No', trigger:'update'}
-              ]
+              component: <SaveStock />,
+              trigger:'update'
             },
             {
               id: 'noSave',
@@ -212,20 +243,12 @@ class Review extends Component {
               <li>Bank of America (BAC)</li>	
               <li>Rite Aid (RAD)</li>
               <li>Oracle (ORCL)</li>	
-            </ul>
-            <ul>
               <li>Enterprise Products Partners (EPD)</li>
               <li>General Electric (GE)</li>	
               <li>Ambev ADR (ABEV)</li>
-            </ul>
-          </div>
-          <div>
-            <ul>
         	    <li>Ford Motor (F)</li>	
         	    <li>Sterling Bancorp (STL)</li>	
-        	    <li>Vale ADR (VALE)</li>	
-            </ul>
-            <ul>
+        	    <li>Vale ADR (VALE)</li>
               <li>Chesapeake Energy (CHK)</li>	
               <li>AT&T (T)</li>	
               <li>Snap (SNAP)</li>
@@ -260,24 +283,29 @@ class Review extends Component {
       <section className="section section-dark">
         <h2>Built using the latest technologies</h2>
        
-          <div>
+          <div className='techExplanation'>
           <img src={reactLogo} className='reactLogo' alt='react logo'/>
             This app was built using the new Javascript Framework, React. this allows me to easily creating a stunning website with its advantages such as components and easy setup.
           </div>
-          <div className='node'>
+          <br/>
+          <div className='techExplanation'>
+            <br />
           <img src={nodeLogo} className='nodeLogo' alt='node logo'/>
             NODE.JS while  React is the framework I built this app on, 
             I also used Node.js in partnership with Axios and Massive, to help me 
             communicate bettwwen not only my front and backend, but also the Yahoo! 
             Finance API I used to gatrher the stocks after user input in the ChatBot.
           </div>
-          <div>
+          <br/>
+          <div className='techExplanation'>
           <img src={sqlLogo} className='sqlLogo' alt='sql logo'/>
             SQL-to handle the saving of peoples recently searched stocks, I have chosen SQL as my database language to prepare myself for the job force, as many companies rely on SQL to communicate with thier database.
           </div>
-          <div>
+          <br/>
+          <div className='techExplanation'>
+            <br/>
             Other Technologies also used in this project: bootstrap, Parralax, Redux, Auth0, Sessions,  
-          </div>                                                                          
+          </div>                                                                   
       </section>
       
       <div className="pimg1">
