@@ -14,19 +14,19 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 require('colors');
 
-class SaveStock extends Component {
+// class SaveStock extends Component {
 
 
-  componentDidMount() {
+//   componentDidMount() {
 
-      axios.post(`/api/stocks/`, {validator: this.props })
-      .then ( response => {
-        console.log(response)
-      } )
-  }
+//       axios.post(`/api/stocks/`, {validator: this.props })
+//       .then ( response => {
+//         console.log(response)
+//       } )
+//   }
 
 
-}
+// }
 
 
 
@@ -185,31 +185,9 @@ class Review extends Component {
             },
             {
               id: 'review',
-              component: <Review updateSaved={this.updateSaved}/>,
+              component: <Review />,
               asMessage: true,
-              trigger: 'save1',
-            },
-            {
-              id: 'save1',
-              message: 'Would you like to save this stock to your Profile?',
-              trigger: 'save1-2'
-            },
-            {
-              id: 'save1-2',
-              options: [
-                { value: 'yes', label: 'Yes', trigger:'save'},
-                { value: 'no', label:'No', trigger:'update'}
-              ]
-            },
-            {
-              id: 'save',
-              component: <SaveStock savedStocks={this.props.savedStocks}/>,
-              trigger:'update'
-            },
-            {
-              id: 'noSave',
-              message: 'hello',
-              trigger: 'update'
+              trigger: 'update',
             },
             {
               id: 'update',
