@@ -32,22 +32,24 @@ class SaveStock extends Component {
 
 
 class Review extends Component {
-    constructor(props) {
-      super(props);
-    this.state = {
-        baseUrl2: '")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=',
-        baseUrl: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("',
-        validator: this.props.steps.validator,
-        NewsPrice: this.props.steps.NewsPrice,
-        startDate: this.props.steps.startDate,
-        endDate: this.props.steps.endDate,
-        stockInfo: {}
-      };
-    }
+  constructor(props) {
+    super(props);
+    const { validator, NewsPrice, startDate, endDate } = this.props.steps;
+    
+  this.state = {
+      baseUrl2: '")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=',
+      baseUrl: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("',
+      validator: this.props.steps.validator,
+      NewsPrice: this.props.steps.NewsPrice,
+      startDate: this.props.steps.startDate,
+      endDate: this.props.steps.endDate,
+      stockInfo: {}
+    };
+  }
 
     componentDidMount() {
-    //   const { validator, NewsPrice, startDate, endDate } = this.props.steps;
-    //   this.setState({ validator, NewsPrice, startDate, endDate});
+      
+      // this.setState({ validator, NewsPrice, startDate, endDate});
       var urlUpdater= this.state.baseUrl + this.props.steps.validator.value + this.state.baseUrl2;
       console.log(urlUpdater);
       axios.get(urlUpdater)
@@ -62,7 +64,7 @@ class Review extends Component {
 
   
     render() {
-      const { validator, NewsPrice, startDate, endDate} = this.state;
+      
       return (
         <div style={{ width: '100%' }}>
           <h3>Summary</h3>
@@ -102,13 +104,16 @@ class Review extends Component {
 
 
   class SimpleForm extends Component {
-  //   constructor(props){
-  //   super(props)
-  //   this.state = {
-  //     validator: this.props.steps.validator
-  //   }
-  
-  // }
+    
+
+    //   this.updateSaved=this.updateSaved.bind(this);
+    // }
+    //   updateSaved(stocks){
+    //     this.setState({
+    //       savedStocks:stocks
+    //     })
+    //   }
+    
 
 
     render() {
@@ -180,7 +185,7 @@ class Review extends Component {
             },
             {
               id: 'review',
-              component: <Review />,
+              component: <Review updateSaved={this.updateSaved}/>,
               asMessage: true,
               trigger: 'save1',
             },
@@ -198,7 +203,7 @@ class Review extends Component {
             },
             {
               id: 'save',
-              component: <SaveStock />,
+              component: <SaveStock savedStocks={this.props.savedStocks}/>,
               trigger:'update'
             },
             {
