@@ -58,7 +58,7 @@ passport.deserializeUser(function(userID, done){
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0',{
-    successRedirect: 'http://localhost:3000/#/home',
+    successRedirect: 'https://stockbotpro.com/#/home',
     failureRedirect: '/auth'
 }));
 
@@ -73,7 +73,7 @@ app.get('/auth/user', (req, res, next) => {
 
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    res.redirect(302, 'http://localhost:3000/')
+    res.redirect(302, process.env.SERVER_HOST)
 });
 
 

@@ -6,7 +6,7 @@ class Login extends Component{
     render(){
         return(
             <div>
-                <a href="http://localhost:3535/auth"><button>Login</button></a>
+                <a href="http://stockbotpro.com/auth"><button>Login</button></a>
             </div>
         )
     }
