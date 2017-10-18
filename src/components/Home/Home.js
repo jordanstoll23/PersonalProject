@@ -163,6 +163,11 @@ class Review extends Component {
               trigger: 'validator',
             },
             {
+              id:'2-1',
+              message:'Please enter the stock abbreviation you would like to search. If you want to look at a list of Popular companies, Look below the Chat.',
+              trigger: 'validator',
+            },
+            {
               id:'validator',
               user: true,
               trigger: '3',
@@ -197,7 +202,7 @@ class Review extends Component {
             {
               id: 'secondStock',
               options: [
-                { value: 'yes', label: 'Yes', trigger: '2' },
+                { value: 'yes', label: 'Yes', trigger: '2-1' },
                 { value: 'no', label: 'No', trigger: 'end-message' },
               ],
             },
