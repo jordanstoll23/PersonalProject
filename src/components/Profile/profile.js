@@ -68,12 +68,10 @@ class Profile extends Component{
           <span className="border">
             Your Saved Stocks
           </span>
+          <div className="stocks">
           {mapStocks}
+          </div>
         </div>
-        <div>
-       
-        </div>
-        
     </div>
       
         )
