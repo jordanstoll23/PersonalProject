@@ -226,7 +226,7 @@ class Review extends Component {
               <li>Bank of America (BAC)</li>	
               <li>Rite Aid (RAD)</li>
               <li>Oracle (ORCL)</li>	
-              <li>Enterprise Products Partners (EPD)</li>
+              <li>Enterprise Products (EPD)</li>
               <li>General Electric (GE)</li>	
               <li>Ambev ADR (ABEV)</li>
         	    <li>Ford Motor (F)</li>	
@@ -235,20 +235,12 @@ class Review extends Component {
               <li>Chesapeake Energy (CHK)</li>	
               <li>AT&T (T)</li>	
               <li>Snap (SNAP)</li>
-            </ul>
-          </div>	
-          <div>
-            <ul>
               <li>Wells Fargo (WFC)</li>	
               <li>Transocean (RIG)</li>	
               <li>Freeport-McMoRan (FCX)</li>	
-            </ul>
-            <ul>
               <li>Calpine (CPN)</li>
               <li>Pfizer (PFE)</li>
-              <li>Weatherford International (WFT)</li>
-            </ul>
-            <ul>
+              <li>Weatherford (WFT)</li>
               <li>ENSCO (ESV)</li>
               <li>Marathon Oil (MRO)</li>
             </ul>
@@ -268,27 +260,38 @@ class Review extends Component {
        
           <div className='techExplanation'>
           <img src={reactLogo} className='reactLogo' alt='react logo'/>
-            This app was built using the new Javascript Framework, React. this allows me to easily creating a stunning website with its advantages such as components and easy setup.
+          <div className="techText1">
+            This app was built using the new Javascript Framework, React. this allows me to easily creating a stunning website with its advantages such as components and easy setup. 
+            React is known as a up and coming technology and is widely regarded as one of the future frameworks of javascript.
+          </div>
           </div>
           <br/>
           <div className='techExplanation'>
             <br />
           <img src={nodeLogo} className='nodeLogo' alt='node logo'/>
+          <div className="techText2">
             NODE.JS while  React is the framework I built this app on, 
             I also used Node.js in partnership with Axios and Massive, to help me 
-            communicate bettwwen not only my front and backend, but also the Yahoo! 
-            Finance API I used to gatrher the stocks after user input in the ChatBot.
+            communicate between not only my front and backend, but also the Yahoo! 
+            Finance API I used to gather the stocks after user input in the ChatBot.
+          </div>
           </div>
           <br/>
           <div className='techExplanation'>
           <img src={sqlLogo} className='sqlLogo' alt='sql logo'/>
-            SQL-to handle the saving of peoples recently searched stocks, I have chosen SQL as my database language to prepare myself for the job force, as many companies rely on SQL to communicate with thier database.
+          <div className="techText3">
+            SQL-to handle the saving of peoples recently searched stocks, I have chosen SQL as my database language to 
+            prepare myself for the job force, as many companies rely on SQL to communicate with thier database. when someone authenticates using Auth0, the are generated a 
+            unique UserID and the stocks they choose to save are then associated with their UserId by way of two tables and a foreign key.
+          </div>
           </div>
           <br/>
           <div className='techExplanation'>
             <br/>
-            Other Technologies also used in this project: bootstrap, Parralax, Redux, Auth0, Sessions,  
-          </div>                                                                   
+            <div className="techText4">
+            Other Technologies also used in this project: bootstrap, Parralax, Redux, Auth0, Sessions, digital ocean hosting, PostgreSQL.  
+          </div>  
+          </div>                                                                 
       </section>
       
       <div className="pimg1">
