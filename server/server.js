@@ -16,6 +16,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static('build'));
+
 massive(process.env.CONNECTION_STRING).then( db => {
     app.set('db', db);
 }).catch(err => console.log(err))
