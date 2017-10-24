@@ -144,7 +144,18 @@ class Review extends Component {
       
       <section className="section section-light">
         <h2>Check how your stocks are doing</h2>
+        
         <div className='chatBot'>
+        <div className="StockExplanation">
+        ASK: is the price a seller states they will accept.
+        The seller may qualify the stated asking price as firm or negotiable. 
+        <br/><br/>
+        PERCENTAGE CHANGE: the amount of gain or loss from a single day 
+        from open to when you search.
+        <br/><br/>
+        P/E Ratio: The price-earnings ratio (P/E ratio) is the ratio for valuing a company 
+        that measures its current share price relative to its per-share earnings. 
+        </div>
         <ChatBot
           steps={[
             {
@@ -213,6 +224,9 @@ class Review extends Component {
             },
           ]}
         />
+        {/* <div className='stockExplanation2'>
+        hellooo
+        </div> */}
         </div>
       </section>
       

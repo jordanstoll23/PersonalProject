@@ -190,6 +190,18 @@ ul {
   letter-spacing: 6px;
   text-transform: uppercase; }
 
+  .StockExplanation{
+    padding-right: 15%;
+    font-weight: 600;
+    max-width: 20%;
+    text-align: center;
+  }
+
+  .stockExplanation2{
+    padding-left: 15%;
+    font-weight: 600;
+  }
+
   .suit_and_tie {
     /* font */
     color: black;
