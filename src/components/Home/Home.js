@@ -37,8 +37,8 @@ class Review extends Component {
     const { validator, NewsPrice, startDate, endDate } = this.props.steps;
     
   this.state = {
-      baseUrl2: '")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=',
-      baseUrl: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("',
+      baseUrl2: '&fields=fiftyTwoWkHigh%2CfiftyTwoWkHighDate%2CfiftyTwoWkLow%2CfiftyTwoWkLowDate&mode=I&jerq=false',
+      baseUrl: 'https://marketdata.websol.barchart.com/getQuote.json?apikey=8943685f2b7e5247a714155c2c17308e&symbols=',
       validator: this.props.steps.validator,
       NewsPrice: this.props.steps.NewsPrice,
       startDate: this.props.steps.startDate,
@@ -54,12 +54,13 @@ class Review extends Component {
       console.log(urlUpdater);
       axios.get(urlUpdater)
       .then((response) => { 
-          console.log(response);
+          console.log(response.data.results[0].name);
         this.setState({
             stockInfo: response.data
+        }, () => {
+          console.log(this.state.stockInfo)
         })
         });
-       
     };
 
   
@@ -72,19 +73,23 @@ class Review extends Component {
             <tbody>
               <tr>
                 <td>Company Name</td>
-                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.Name}</td>:null}
+                {this.state.stockInfo.results?<td>{this.state.stockInfo.results[0].name}</td>:null}
               </tr>
               <tr>
                 <td>Ask price</td>
-                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.Ask}</td>:null}
+                {this.state.stockInfo.results?<td>{this.state.stockInfo.results[0].lastPrice}</td>:null}
               </tr>
               <tr>
                 <td>percent Change</td>
-                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.Change}</td>:null}
+                {this.state.stockInfo.results?<td>{this.state.stockInfo.results[0].percentChange}</td>:null}
               </tr>
               <tr>
-                <td>P/E Ratio</td>
-                {this.state.stockInfo.query?<td>{this.state.stockInfo.query.results.quote.PERatio}</td>:null}
+                <td>52 Week High</td>
+                {this.state.stockInfo.results?<td>{this.state.stockInfo.results[0].fiftyTwoWkHigh}</td>:null}
+              </tr>
+              <tr>
+                <td>52 Week Low</td>
+                {this.state.stockInfo.results?<td>{this.state.stockInfo.results[0].fiftyTwoWkLow}</td>:null}
               </tr>
             </tbody>
           </table>
