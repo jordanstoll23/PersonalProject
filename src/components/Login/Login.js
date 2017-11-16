@@ -14,7 +14,7 @@ class Login extends Component{
                 Please Login to interact with StockBot
               </span>
               {<div className="variation-a">
-              <a href="http://stockbotpro.com/auth"><button className="suit_and_tie">Login</button></a>
+              <a href="http://localhost:3535/auth"><button className="suit_and_tie">Login</button></a>
             </div>}
             </div>
         </div>

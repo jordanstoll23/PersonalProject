@@ -31,7 +31,10 @@ class Profile extends Component{
     render(){
            const mapStocks = this.state.stocks.map( stock => {
                 return (
-                    <div key={stock.id}>
+                    <div key={stock.id} onClick={()=>{
+                        axios.delete(`/api/stocks/:${stock.stock}`)
+                        console.log(stock, "hello")
+                    }} >
                         {stock.stock}
                     </div>
                 )

@@ -60,7 +60,7 @@ passport.deserializeUser(function(userID, done){
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0',{
-    successRedirect: 'http://stockbotpro.com/#/home',
+    successRedirect: 'http://localhost:3000/#/home',
     failureRedirect: '/auth'
 }));
 
@@ -89,6 +89,11 @@ app.get('/api/stocks/', (req, res) => {
     db.get_stock([req.user]).then(stock => {
         res.status(200).send(stock);
     })
+})
+
+app.delete('/api/stocks/:stock', (req,res) => {
+    const db = req.app.get('db');
+    db.delete_stock(params.stock)
 })
 
 
