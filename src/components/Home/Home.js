@@ -125,8 +125,6 @@ class Review extends Component {
         PERCENTAGE CHANGE: the amount of gain or loss from a single day 
         from open to when you search.
         <br/><br/>
-        P/E Ratio: The price-earnings ratio (P/E ratio) is the ratio for valuing a company 
-        that measures its current share price relative to its per-share earnings. 
         </div>
         <ChatBot
           steps={[
