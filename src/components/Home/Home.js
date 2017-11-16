@@ -9,27 +9,7 @@ import nodeLogo from '../../assets/nodejs-new-pantone-white.png';
 import sqlLogo from '../../assets/sqlLogo.png';
 import { HashLink as Link } from 'react-router-hash-link';
 
-
-
-
 require('colors');
-
-// class SaveStock extends Component {
-
-
-//   componentDidMount() {
-
-//       axios.post(`/api/stocks/`, {validator: this.props })
-//       .then ( response => {
-//         console.log(response)
-//       } )
-//   }
-
-
-// }
-
-
-
 
 class Review extends Component {
   constructor(props) {
@@ -48,8 +28,6 @@ class Review extends Component {
   }
 
     componentDidMount() {
-      
-      // this.setState({ validator, NewsPrice, startDate, endDate});
       var urlUpdater= this.state.baseUrl + this.props.steps.validator.value + this.state.baseUrl2;
       console.log(urlUpdater);
       axios.get(urlUpdater)
@@ -109,17 +87,6 @@ class Review extends Component {
 
 
   class SimpleForm extends Component {
-    
-
-    //   this.updateSaved=this.updateSaved.bind(this);
-    // }
-    //   updateSaved(stocks){
-    //     this.setState({
-    //       savedStocks:stocks
-    //     })
-    //   }
-    
-
 
     render() {
       return (
@@ -229,9 +196,6 @@ class Review extends Component {
             },
           ]}
         />
-        {/* <div className='stockExplanation2'>
-        hellooo
-        </div> */}
         </div>
       </section>
       
@@ -330,8 +294,6 @@ class Review extends Component {
       );
     }
   }
-  
-//   export default SimpleForm;
 
 function mapStateToProps(state){
     return {

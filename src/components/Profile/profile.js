@@ -14,7 +14,6 @@ class Profile extends Component{
     }
     
     
-    
     componentDidMount(){
         
         axios.get(`/api/stocks/`)
@@ -29,12 +28,7 @@ class Profile extends Component{
     
     
     
-    
-    
-    
-    
     render(){
-        // function mapStocks(){
            const mapStocks = this.state.stocks.map( stock => {
                 return (
                     <div key={stock.id}>
@@ -42,28 +36,24 @@ class Profile extends Component{
                     </div>
                 )
             })
-           
-        // }
         return(
     <div id="top">
         <nav className="topnav" id="myTopnav">
-            <div >
-            <Link to="home#top" className='navBarText'>Home</Link>
-            <Link to="home#tech">Technology Used</Link>
-            <Link to="home#stocks">Common Stocks</Link>
-            <a href="#Profile" className='navBarText'>Profile</a>
+            <div>
+                <Link to="home#top" className='navBarText'>Home</Link>
+                <Link to="home#tech">Technology Used</Link>
+                <Link to="home#stocks">Common Stocks</Link>
+                <a href="#Profile" className='navBarText'>Profile</a>
             </div>
             <div className='contact'>
-            <a href="mailto:jordanstoll88@gmail.com"> <i className="fa fa-envelope-o" aria-hidden="true"></i></a>
-            <a href="https://www.linkedin.com/in/jordan-stoll" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
-            <a href="https://github.com/jordanstoll23" target="_blank"><i className="fa fa-github" aria-hidden="true"></i></a>
+                <a href="mailto:jordanstoll88@gmail.com"> <i className="fa fa-envelope-o" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/jordan-stoll" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="https://github.com/jordanstoll23" target="_blank"><i className="fa fa-github" aria-hidden="true"></i></a>
             </div>
         </nav>
             <div className='profileHero'>
             <img src='https://static.pexels.com/photos/147408/pexels-photo-147408.jpeg' className='profileImg' alt=""/>
-
             </div>
-            
         <div className="ptext">
           <span className="border">
             Your Saved Stocks
@@ -80,7 +70,6 @@ class Profile extends Component{
 
 function mapStateToProps(state){
     return {
- 
     }
 }
 
